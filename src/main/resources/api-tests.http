@@ -1,0 +1,108 @@
+### Get all employees
+GET http://localhost:8080/api/employees
+
+### EMPLOYEE TASKS
+
+### Employee 1 - Create vacation request
+POST http://localhost:8080/api/employees/1/vacation-requests
+Content-Type: application/json
+
+{
+  "vacationStartDate": "2025-12-25",
+  "vacationEndDate": "2025-12-30",
+  "reason": "Christmas vacation"
+}
+
+### Employee 2 - Create vacation request  
+POST http://localhost:8080/api/employees/2/vacation-requests
+Content-Type: application/json
+
+{
+  "vacationStartDate": "2025-12-20",
+  "vacationEndDate": "2025-12-24",
+  "reason": "Holiday break"
+}
+
+### Employee 3 - Create vacation request (overlapping)
+POST http://localhost:8080/api/employees/3/vacation-requests
+Content-Type: application/json
+
+{
+  "vacationStartDate": "2025-12-23",
+  "vacationEndDate": "2025-12-27",
+  "reason": "Year end vacation"
+}
+
+### Employee 1 - View their vacation requests
+GET http://localhost:8080/api/employees/1/vacation-requests
+
+### Employee 1 - View their vacation requests filtered by status (pending)
+GET http://localhost:8080/api/employees/1/vacation-requests?status=pending
+
+### Employee 1 - View their vacation requests filtered by status (approved)
+GET http://localhost:8080/api/employees/1/vacation-requests?status=approved
+
+### Employee 1 - View vacation summary (remaining days)
+GET http://localhost:8080/api/employees/1/vacation-summary
+
+### Employee 2 - View vacation summary
+GET http://localhost:8080/api/employees/2/vacation-summary
+
+### MANAGER TASKS
+
+### Manager 4 - View all vacation requests
+GET http://localhost:8080/api/managers/4/vacation-requests
+
+### Manager 4 - View pending requests only
+GET http://localhost:8080/api/managers/4/vacation-requests?status=pending
+
+### Manager 4 - View approved requests only  
+GET http://localhost:8080/api/managers/4/vacation-requests?status=approved
+
+### Manager 4 - View pending and approved requests
+GET http://localhost:8080/api/managers/4/vacation-requests?status=pending,approved
+
+### Manager 4 - View specific employee's requests (Employee 1)
+GET http://localhost:8080/api/managers/4/employees/1/vacation-requests
+
+### Manager 4 - View specific employee's requests (Employee 2)
+GET http://localhost:8080/api/managers/4/employees/2/vacation-requests
+
+### Manager 4 - View overlapping requests for date range
+GET http://localhost:8080/api/managers/4/overlapping-requests?startDate=2025-12-20&endDate=2025-12-30
+
+### Manager 4 - Approve vacation request 
+PUT http://localhost:8080/api/managers/4/vacation-requests/1?action=approve
+
+### Manager 4 - Reject vacation request 
+PUT http://localhost:8080/api/managers/4/vacation-requests/2?action=reject
+
+### Manager 5 - Approve vacation request 
+PUT http://localhost:8080/api/managers/5/vacation-requests/3?action=approve
+
+### TEST VACATION LIMIT 
+
+### Employee 1 - Try to create request that exceeds 30 days limit
+POST http://localhost:8080/api/employees/1/vacation-requests
+Content-Type: application/json
+
+{
+  "vacationStartDate": "2026-01-01",
+  "vacationEndDate": "2026-02-15",
+  "reason": "Long vacation that should fail"
+}
+
+### VALIDATION TESTS 
+
+### Employee 1 - Try to create request with end date before start date
+POST http://localhost:8080/api/employees/1/vacation-requests
+Content-Type: application/json
+
+{
+  "vacationStartDate": "2025-12-30",
+  "vacationEndDate": "2025-12-25",
+  "reason": "Invalid date range"
+}
+
+### Non-manager tries to approve request (should fail)
+PUT http://localhost:8080/api/managers/1/vacation-requests/1?action=approve
