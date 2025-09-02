@@ -241,20 +241,6 @@ server.port=8080
 • Employee must exist  
 • Manager must exist (for processing)  
 • Cannot exceed 30-day annual limit
-
-## Common Issues & Solutions
-
-### Application Won't Start
-• Ensure Java 17+ is installed  
-• Check that port 8080 is available  
-• Verify all dependencies are downloaded
-
-### 400 Bad Request Errors
-• Check JSON format in requests  
-• Ensure required fields are included  
-• Verify date format (YYYY-MM-DD)
-
-### Validation Errors
 • Ensure vacation dates are in the future  
 • Check that employee/manager IDs exist  
 • Verify request doesn't exceed vacation day limit
