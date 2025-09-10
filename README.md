@@ -25,33 +25,6 @@ A comprehensive REST API for managing employee vacation requests built with Spri
 • Input Validation - Comprehensive request validation  
 • RESTful Design - Clean, intuitive API endpoints
 
-## Quick Start
-
-### 1. Clone and Setup
-```bash
-git clone https://github.com/okwandiswa/vacation-request-api.git
-cd vacation-request-api
-```
-
-### 2. Run the Application
-
-**Using VS Code:**
-1. Open the project in VS Code
-2. Navigate to VacationApiApplication.java
-3. Click the "Run" button above the main method
-
-### 3. Verify Setup
-The application will start on http://localhost:8080
-
-**Check initial data:**
-```bash
-curl http://localhost:8080/api/employees
-```
-
-You should see 5 users:
-• **Employees:** John Smith, Jane Doe, Alice Johnson  
-• **Managers:** Bob Manager, Sarah Director
-
 ## API Documentation
 
 ### Employee Endpoints
@@ -191,31 +164,6 @@ src/main/resources/
 └── application.properties          # Application configuration
 
 api-tests.http                      # HTTP test requests
-```
-
-## Configuration
-
-### Database Configuration
-The application uses H2 in-memory database by default. Configuration in application.properties:
-
-```properties
-# H2 Database
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.username=sa
-spring.datasource.password=
-
-# H2 Console (for development)
-spring.h2.console.enabled=true
-```
-
-**Access H2 Console:** http://localhost:8080/h2-console
-• **JDBC URL:** jdbc:h2:mem:testdb  
-• **Username:** sa  
-• **Password:** (leave empty)
-
-### Server Configuration
-```properties
-server.port=8080
 ```
 
 ## Business Rules
